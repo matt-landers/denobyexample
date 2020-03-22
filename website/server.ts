@@ -8,5 +8,5 @@ const s = serve({ port });
 console.log(`http://localhost:/${port}`);
 
 for await (const req of s) {
-  req.respond("OK");
+  req.respond({ body: "OK", status:200 });
 }
