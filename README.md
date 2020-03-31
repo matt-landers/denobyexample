@@ -1,5 +1,17 @@
 # Deno by Example
 
-Repo for the public website denobyexample.com.
+denobyexample.com is a place for new and experienced developers to learn about Deno.
 
-This repo is in development, but once it is launched, I'll be accepting PRs of examples of how to use Deno in different scenarios.
+## Please Submit PRs with Examples
+
+If you have examples you'd like listed, submit a PR. The examples are simply markdown files in the [examples](./examples) folder.
+
+## Run the Site
+
+```bash
+deno --allow-env --allow-net --allow-read index.ts
+```
+
+## WIP
+
+This codebase is very much a work in progress.
