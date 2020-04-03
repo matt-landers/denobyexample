@@ -3,6 +3,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "lib": ["esnext"],
+    "jsx": "react",
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -11,5 +12,5 @@
     "resolveJsonModule": true,
     "target": "esnext"
   },
-  "include": ["./**/*.ts"]
+  "include": ["./**/*.ts", "routes/react.tsx"]
 }
