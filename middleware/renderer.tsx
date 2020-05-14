@@ -1,4 +1,5 @@
 import React from "react";
+// @deno-types="https://deno.land/x/types/react-dom/v16.13.1/server.d.ts"
 import ReactDomServer from "react-dom/server";
 import { Middleware } from "https://deno.land/x/oak/mod.ts";
 
@@ -41,7 +42,7 @@ const render = ({ Page, title, state }: any) =>
         />
         <style
           dangerouslySetInnerHTML={{
-            __html: `            
+            __html: `
           .container {
             maxWidth: 980px;
           }`,
