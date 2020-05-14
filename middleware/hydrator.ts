@@ -16,22 +16,22 @@ const Hydrator: Middleware = async ({ request, response, state }, next) => {
 const initialize = async () => {};
 
 const getRoutes = async (dir: string, baseuri: string) => {
-  for await (const fi of walk(dir)) {
-    if (fi.info.isDirectory()) {
-      getRoutes(join(dir, fi.filename), baseuri);
+  for await (const fileInfo of walk(dir)) {
+    if (fileInfo.isDirectory) {
+      getRoutes(join(dir, fileInfo.name), baseuri);
       continue;
     }
-    const slug = fi.filename.split(".").slice(0, -1).join(".");
-    switch (fi.filename.toLowerCase()) {
+    const slug = fileInfo.name.split(".").slice(0, -1).join(".");
+    switch (fileInfo.name.toLowerCase()) {
       case "index.tsx":
         water.routes[baseuri] = {
-          module: join(dir, fi.filename),
+          module: join(dir, fileInfo.name),
           parts: [...baseuri.split("/"), slug],
         };
         break;
       default:
         water.routes[join(baseuri, slug)] = {
-          module: join(dir, fi.filename),
+          module: join(dir, fileInfo.name),
           parts: [...baseuri.split("/"), slug],
         };
         break;

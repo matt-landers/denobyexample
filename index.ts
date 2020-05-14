@@ -16,7 +16,7 @@ app.use(Renderer);
 // app.use(router.allowedMethods());
 
 app.use(async (ctx) => {
-  await send(ctx, ctx.request.path, {
+  await send(ctx, ctx.request.url.pathname, {
     root: `${Deno.cwd()}/public`,
   });
 });

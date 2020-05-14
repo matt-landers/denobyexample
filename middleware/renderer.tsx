@@ -3,7 +3,7 @@ import ReactDomServer from "react-dom/server";
 import { Middleware } from "https://deno.land/x/oak/mod.ts";
 
 const Renderer: Middleware = async (ctx, next) => {
-  const path = ctx.request.path;
+  const path = ctx.request.url.pathname;
   let module: any;
   if (path === "" || path === "/") {
     //@ts-ignore
