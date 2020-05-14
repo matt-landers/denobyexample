@@ -1,21 +1,23 @@
-// @deno-types="https://deno.land/std/types/react.d.ts"
-// @deno-types="https://deno.land/std/types/react-dom.d.ts"
 import React from "react";
 import ReactDomServer from "react-dom/server";
 import { Middleware } from "https://deno.land/x/oak/mod.ts";
 
-const Renderer: Middleware = async ({ request, response, state }, next) => {
-  const path = request.path;
+const Renderer: Middleware = async (ctx, next) => {
+  const path = ctx.request.path;
+  let module: any;
   if (path === "" || path === "/") {
-    const module = await import("../pages/index.tsx");
-    response.body = render({ Page: module.default, state: state.water });
+    //@ts-ignore
+    module = await import("../pages/index.tsx");
   } else {
-    const module = await import(`../pages/${path}.tsx`);
-    if (module) {
-      response.body = render({ Page: module.default, state: state.water });
-    }
+    module = await import(`../pages/${path}.tsx`);
   }
-  next();
+
+  ctx.response.body =
+    module && render({ Page: module.default, state: ctx.state.water });
+
+  if (!ctx.response.body) {
+    next();
+  }
 };
 
 const render = ({ Page, title, state }: any) =>

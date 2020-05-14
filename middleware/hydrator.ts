@@ -10,8 +10,7 @@ const Hydrator: Middleware = async ({ request, response, state }, next) => {
   } else {
     state.water = initialize();
   }
-
-  next();
+  return next();
 };
 
 const initialize = async () => {};

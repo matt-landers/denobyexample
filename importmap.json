@@ -1,7 +1,6 @@
 {
   "imports": {
-    "oak": "https://deno.land/x/oak/mod.ts",
-    "react": "https://dev.jspm.io/react",
-    "react-dom/": "https://dev.jspm.io/react-dom/"
+    "react": "https://deno.land/x/types/react/v16.13.1/react.d.ts",
+    "react-dom/server": "https://deno.land/x/types/react-dom/v16.13.1/server.d.ts"
   }
 }
