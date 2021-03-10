@@ -1,7 +1,6 @@
-import React from "react";
-// @deno-types="https://deno.land/x/types/react-dom/v16.13.1/server.d.ts"
-import ReactDomServer from "react-dom/server";
-import { Middleware } from "https://deno.land/x/oak/mod.ts";
+import { React } from "../deps/react.ts";
+import { ReactDOMServer } from "../deps/react-dom.ts";
+import { Middleware } from "../deps/oak.ts";
 
 const Renderer: Middleware = async (ctx, next) => {
   const path = ctx.request.url.pathname;
@@ -10,7 +9,7 @@ const Renderer: Middleware = async (ctx, next) => {
     //@ts-ignore
     module = await import("../pages/index.tsx");
   } else {
-    module = await import(`../pages/${path}.tsx`);
+    module = await import(`../pages${path}.tsx`);
   }
 
   ctx.response.body =
@@ -22,7 +21,7 @@ const Renderer: Middleware = async (ctx, next) => {
 };
 
 const render = ({ Page, title, state }: any) =>
-  ReactDomServer.renderToString(
+  ReactDOMServer.renderToString(
     <html>
       <head>
         <meta charSet="utf-8" />

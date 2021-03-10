@@ -1,11 +1,11 @@
-import React from "react";
+import { React } from "../deps/react.ts";
 
-const About = ({ examples }: { examples: Array<any> }) => {
+const Test = ({ examples }: { examples: Array<any> }) => {
   return (
     <>
       <div className="container">
         <header>
-          <h1>About Deno by Example</h1>
+          <h1>Test</h1>
         </header>
       </div>
       <footer className="container">
@@ -19,4 +19,4 @@ const About = ({ examples }: { examples: Array<any> }) => {
   );
 };
 
-export default About;
+export default Test;

@@ -1,5 +1,5 @@
 import { HttpError, Status, Middleware } from "https://deno.land/x/oak/mod.ts";
-import { bold, red } from "https://deno.land/std@v0.38.0/fmt/colors.ts";
+import { bold, red } from "https://deno.land/x/std/fmt/colors.ts";
 
 const ErrorHandler: Middleware = async (ctx, next) => {
   try {

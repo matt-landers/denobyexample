@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "../deps/react.ts";
 
 const Home = ({ examples }: { examples: Array<any> }) => {
   return (

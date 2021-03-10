@@ -1,4 +1,4 @@
-import { Application, send } from "https://deno.land/x/oak/mod.ts";
+import { Application, send } from "./deps/oak.ts";
 import ErrorHandler from "./middleware/errorhandler.ts";
 import Logger from "./middleware/logger.ts";
 import ResponseTime from "./middleware/responsetime.ts";

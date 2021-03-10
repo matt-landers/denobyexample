@@ -1,6 +1,0 @@
-{
-  "imports": {
-    "react": "https://unpkg.com/es-react",
-    "react-dom/server": "https://dev.jspm.io/react-dom/server"
-  }
-}
