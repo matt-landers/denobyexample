@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { HttpError, Status, Middleware } from "https://deno.land/x/oak/mod.ts";
 import { bold, red } from "https://deno.land/x/std/fmt/colors.ts";
 

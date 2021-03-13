@@ -1,12 +1,12 @@
+// deno-lint-ignore-file no-explicit-any
 import { React } from "../deps/react.ts";
 import { ReactDOMServer } from "../deps/react-dom.ts";
 import { Middleware } from "../deps/oak.ts";
 
 const Renderer: Middleware = async (ctx, next) => {
   const path = ctx.request.url.pathname;
-  let module: any;
+  let module;
   if (path === "" || path === "/") {
-    //@ts-ignore
     module = await import("../pages/index.tsx");
   } else {
     module = await import(`../pages${path}.tsx`);

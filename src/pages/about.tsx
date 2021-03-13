@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { React } from "../deps/react.ts";
 
 const About = ({ examples }: { examples: Array<any> }) => {

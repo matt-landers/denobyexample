@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { Middleware } from "../deps/oak.ts";
 import { walk } from "https://deno.land/std/fs/mod.ts";
 import { join } from "https://deno.land/std/path/mod.ts";
@@ -5,16 +6,13 @@ import { join } from "https://deno.land/std/path/mod.ts";
 let water: any;
 
 const Hydrator: Middleware = async ({ request, response, state }, next) => {
-  if (water) {
-    state.water = water;
-  } else {
-    state.water = await initialize();
-  }
+  
+  state.water = water ?? await initialize();
   return next();
 };
 
 const initialize = async () => {
-  //await getRoutes("../../examples", )
+  //await getRoutes("../../examples", "/");
 };
 
 const getRoutes = async (dir: string, baseuri: string) => {
