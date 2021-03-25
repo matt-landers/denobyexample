@@ -3,9 +3,9 @@ import { walkSync } from "https://deno.land/std/fs/mod.ts";
 
 const router = new Router();
 
-const layoutTemplate = Deno.readTextFileSync("./routes/templates/layout.html"),
-  exampleTemplate = Deno.readTextFileSync("./routes/templates/example.html"),
-  homeTemplate = Deno.readTextFileSync("./routes/templates/home.html");
+const layoutTemplate = Deno.readTextFileSync("./src/routes/templates/layout.html"),
+  exampleTemplate = Deno.readTextFileSync("./src/routes/templates/example.html"),
+  homeTemplate = Deno.readTextFileSync("./src/routes/templates/home.html");
 
 const title = "Deno by Example 🦕";
 const exampleCache: { [key: string]: string } = {};
