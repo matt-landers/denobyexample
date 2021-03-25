@@ -4,7 +4,6 @@ import ErrorHandler from "./middleware/errorhandler.ts";
 import Logger from "./middleware/logger.ts";
 import ResponseTime from "./middleware/responsetime.ts";
 
-const env = Deno.env();
 const app = new Application();
 app.use(ErrorHandler);
 app.use(Logger);
@@ -13,11 +12,11 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 app.use(async ctx => {
-  await send(ctx, ctx.request.path, {
+  await send(ctx, ctx.request.url.pathname, {
     root: `${Deno.cwd()}/public`
   });
 });
 
-const port: number = parseInt(env?.PORT ?? "3020");
+const port: number = parseInt(Deno.env.get("PORT") ?? "3000");
 
 app.listen({ port });

@@ -1,11 +1,11 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
-import { readFileStrSync, walkSync } from "https://deno.land/std/fs/mod.ts";
+import { walkSync } from "https://deno.land/std/fs/mod.ts";
 
 const router = new Router();
 
-const layoutTemplate = readFileStrSync("./routes/templates/layout.html"),
-  exampleTemplate = readFileStrSync("./routes/templates/example.html"),
-  homeTemplate = readFileStrSync("./routes/templates/home.html");
+const layoutTemplate = Deno.readTextFileSync("./routes/templates/layout.html"),
+  exampleTemplate = Deno.readTextFileSync("./routes/templates/example.html"),
+  homeTemplate = Deno.readTextFileSync("./routes/templates/home.html");
 
 const title = "Deno by Example 🦕";
 const exampleCache: { [key: string]: string } = {};
@@ -14,9 +14,9 @@ router.get("/", ctx => {
   let body = "";
 
   for (const fi of walkSync("./examples")) {
-    let fle = fi.filename;
+    let fle = fi.name;
     if (fle.indexOf(".md") < 1) continue;
-    fle = fle.split(/[\\ \/]/g)[1].split(".")[0];
+    fle = fle.split(".")[0];
     body += `<a href="/${fle}" class="list-group-item list-group-item-action">${fle.replace(
       "-",
       " "
@@ -32,7 +32,7 @@ router.get("/", ctx => {
 router.get("/:example", async ctx => {
   const path: string = ctx.params.example as string;
   if (!exampleCache[path]) {
-    const exampleMd = readFileStrSync(`./examples/${path}.md`);
+    const exampleMd = Deno.readTextFileSync(`./examples/${path}.md`);
     const result = await fetch("https://api.github.com/markdown/raw", {
       method: "POST",
       headers: {
