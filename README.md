@@ -9,7 +9,7 @@ If you have examples you'd like listed, submit a PR. The examples are simply mar
 ## Run the Site
 
 ```bash
-deno run --allow-env --allow-net --allow-read --importmap=importmap.json index.ts
+deno run --allow-env --allow-net --allow-read --unstable  ./src/index.ts
 ```
 
 ## WIP

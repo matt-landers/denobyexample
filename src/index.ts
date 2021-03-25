@@ -9,7 +9,7 @@ const env = Deno.env.toObject();
 const app = new Application();
 app.use(ErrorHandler);
 app.use(Logger);
-app.use(Hydrator);
+//app.use(Hydrator);
 app.use(ResponseTime);
 app.use(Renderer);
 // app.use(router.routes());
@@ -21,6 +21,6 @@ app.use(async (ctx) => {
   });
 });
 
-const port: number = parseInt(env?.PORT ?? "3020");
+const port: number = parseInt(env?.PORT ?? "3000");
 
 app.listen({ port });

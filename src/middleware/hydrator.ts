@@ -3,22 +3,27 @@ import { Middleware } from "../deps/oak.ts";
 import { walk } from "https://deno.land/std/fs/mod.ts";
 import { join } from "https://deno.land/std/path/mod.ts";
 
-let water: any;
+type Water = {
+  routes: { [key: string] :{
+    module: string;
+    parts: Array<string>;
+  }}
+}
 
-const Hydrator: Middleware = async ({ request, response, state }, next) => {
+let _water: Water;
+
+const Hydrator: Middleware = async ({ state }, next) => {
   
-  state.water = water ?? await initialize();
+  state.water = _water ?? await getRoutes(`./examples`, "/");
+  console.log(state.water);
   return next();
 };
 
-const initialize = async () => {
-  //await getRoutes("../../examples", "/");
-};
-
 const getRoutes = async (dir: string, baseuri: string) => {
+  const water: Water = { routes: {}};
   for await (const fileInfo of walk(dir)) {
+    console.log(fileInfo);
     if (fileInfo.isDirectory) {
-      getRoutes(join(dir, fileInfo.name), baseuri);
       continue;
     }
     const slug = fileInfo.name.split(".").slice(0, -1).join(".");
@@ -37,6 +42,7 @@ const getRoutes = async (dir: string, baseuri: string) => {
         break;
     }
   }
+  return water;
 };
 
 export default Hydrator;
